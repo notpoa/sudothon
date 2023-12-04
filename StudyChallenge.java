@@ -4,6 +4,9 @@ public class StudyChallenge {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        
+        Scanner scanner2 = new Scanner(System.in);
+        Scanner pointsScanner = new Scanner(System.in);
 
         int progress = 0;
         int points = 0;
@@ -13,10 +16,12 @@ public class StudyChallenge {
         System.out.println("Welcome to Study Challenges!");
 
         while (true) {
-            System.out.println("Choose a challenge to complete:");
+            System.out.println("Choose your challenge!");
+            System.out.println("Earn 50 points to unlock a reward!");
             System.out.println("1. Read a chapter");
             System.out.println("2. Solve practice problems");
             System.out.println("3. Write a summary");
+            System.out.println("4. Create your own challenge!");
 
             int choice = scanner.nextInt();
 
@@ -36,6 +41,21 @@ public class StudyChallenge {
                     progress += 20;
                     points += CHALLENGE_POINTS;
                     break;
+               case 4:
+                    System.out.println("What challenge do you want to tackle? ");
+                    String assignChallenge = scanner2.nextLine();
+                    System.out.println("How many points do you want to assign for this task? Max Points is 30");
+                    int assignPoints = pointsScanner.nextInt();
+                    
+                    while (assignPoints>30) {
+                        System.out.println("Invalid. Try again. ");
+                        assignPoints = pointsScanner.nextInt();
+                    }
+                    
+                    System.out.println("Well done! You completed the " + assignChallenge + " challenge and earned " + assignPoints + " points!");
+                    progress += assignPoints;
+                    points += CHALLENGE_POINTS;
+                    break;
                 default:
                     System.out.println("Invalid choice. Please choose a valid challenge.");
                     break;
@@ -50,8 +70,8 @@ public class StudyChallenge {
                 break;  // End the program after reaching the reward threshold
             }
 
-            System.out.println("\nCurrent Progress: " + progress + " points");
-            System.out.println("Total Points: " + points + " points");
+            System.out.println("\nPoints Earned: " + progress + " points");
+            System.out.println("Tasks completed: " + points/10);
             System.out.println("-------------------------------");
         }
 
